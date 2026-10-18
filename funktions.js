@@ -10,19 +10,22 @@ document.getElementById("register").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch("https://results-for-anything.onrender.com", {
-            method: "POST",
-            headers: {
+        const response = await fetch(
+            "https://results-for-anything.onrender.com/register",
+            {
+              method: "POST",
+              headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                groupTime: groupTime,
-                groupDay: groupDay
-            })
-        });
-
-        const result = await response.json();
+              },
+              body: JSON.stringify({
+                name,
+                groupTime,
+                groupDay
+              })
+            }
+          );
+          
+          const result = await response.json();
 
         if (response.ok) {
             alert("Registered successfully! ✅");
