@@ -10,7 +10,7 @@ document.getElementById("register").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("[![Netlify Status](https://api.netlify.com/api/v1/badges/de10058d-fdeb-43c2-b9c4-45217179cf88/deploy-status)](https://app.netlify.com/projects/resultsendday/deploys)", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
