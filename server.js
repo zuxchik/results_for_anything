@@ -7,7 +7,9 @@ const TelegramBot = require("node-telegram-bot-api");
 const app = express();
 
 // Formang ishlayotgan manzilga ruxsat beramiz
-app.use(cors({ origin: "http://127.0.0.1:5500" }));
+app.use(cors({
+    origin: "https://reg-fosomething.netlify.app"
+}));
 app.use(express.json());
 
 const bot = new TelegramBot(process.env.BOT_TOKEN);
