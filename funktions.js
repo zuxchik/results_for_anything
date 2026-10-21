@@ -1,5 +1,7 @@
 
-document.getElementById("register").addEventListener("click", async () => {
+const registerButton = document.getElementById("register");
+
+registerButton.addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
     const SurName = document.getElementById("SurName").value.trim();
     const PhoneNumber = document.getElementById("PhoneNumber").value.trim();
@@ -9,35 +11,42 @@ document.getElementById("register").addEventListener("click", async () => {
         return;
     }
 
+    registerButton.disabled = true;
+    registerButton.textContent = "Sending...";
+
     try {
         const response = await fetch(
             "https://results-for-anything.onrender.com/register",
             {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                name,
-                SurName,
-                PhoneNumber
-              })
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    SurName,
+                    PhoneNumber
+                })
             }
-          );
-          
-          const result = await response.json();
+        );
 
-        if (response.ok) {
-            alert("Registered successfully! ✅");
+        const result = await response.json();
 
-            document.getElementById("name").value = "";
-            document.getElementById("SurName").value = "";
-            document.getElementById("PhoneNumber").value = "";
-        } else {
-            alert(result.error || "Failed to register.");
+        if (!response.ok) {
+            throw new Error(result.error || "Registration failed.");
         }
+
+        alert("Registered successfully! ✅");
+
+        document.getElementById("name").value = "";
+        document.getElementById("SurName").value = "";
+        document.getElementById("PhoneNumber").value = "";
+
     } catch (error) {
-        alert("Serverga ulanib bo‘lmadi!");
-        console.error("Xato:", error);
+        console.error("Registration error:", error);
+        alert(error.message || "Serverga ulanib bo'lmadi!");
+    } finally {
+        registerButton.disabled = false;
+        registerButton.textContent = "Register";
     }
 });

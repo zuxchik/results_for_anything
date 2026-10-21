@@ -4,21 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reg~for_move</title>
+    <title>Registration Form</title>
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
     <contener>
         <headbox>
-            <input type="text" id="name" placeholder="NAME">
-            <input type="text" id="SurName" placeholder="SurName">
-            <input type="text" id="PhoneNumber" placeholder="Phone Number">
+            <input
+                type="text"
+                id="name"
+                placeholder="NAME"
+                required
+            >
 
+            <input
+                type="text"
+                id="SurName"
+                placeholder="SURNAME"
+                required
+            >
 
-            <button id="register" type="button">register</button>
+            <input
+                type="tel"
+                id="PhoneNumber"
+                placeholder="PHONE NUMBER"
+                required
+            >
+
+            <button id="register" type="button">
+                Register
+            </button>
         </headbox>
     </contener>
 
     <script src="funktions.js"></script>
 </body>
 </html>
+    
