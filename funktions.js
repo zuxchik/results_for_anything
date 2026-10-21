@@ -1,10 +1,10 @@
 
 document.getElementById("register").addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
-    const groupTime = document.getElementById("groupTime").value.trim();
-    const groupDay = document.getElementById("groupDay").value.trim();
+    const SurName = document.getElementById("SurName").value.trim();
+    const PhoneNumber = document.getElementById("PhoneNumber").value.trim();
 
-    if (!name || !groupTime || !groupDay) {
+    if (!name || !SurName || !PhoneNumber) {
         alert("Please fill in all fields!");
         return;
     }
@@ -19,8 +19,8 @@ document.getElementById("register").addEventListener("click", async () => {
               },
               body: JSON.stringify({
                 name,
-                groupTime,
-                groupDay
+                SurName,
+                PhoneNumber
               })
             }
           );
@@ -31,8 +31,8 @@ document.getElementById("register").addEventListener("click", async () => {
             alert("Registered successfully! ✅");
 
             document.getElementById("name").value = "";
-            document.getElementById("groupTime").value = "";
-            document.getElementById("groupDay").value = "";
+            document.getElementById("SurName").value = "";
+            document.getElementById("PhoneNumber").value = "";
         } else {
             alert(result.error || "Failed to register.");
         }

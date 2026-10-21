@@ -54,12 +54,13 @@ app.get("/", async (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-    const { name, groupTime, groupDay } = req.body;
+
+    const { name, SurName, PhoneNumber } = req.body;
 
     if (
         typeof name !== "string" || !name.trim() ||
-        typeof groupTime !== "string" || !groupTime.trim() ||
-        typeof groupDay !== "string" || !groupDay.trim()
+        typeof SurName !== "string" || !SurName.trim() ||
+        typeof PhoneNumber !== "string" || !PhoneNumber.trim()
     ) {
         return res.status(400).json({
             error: "Barcha maydonlarni to‘ldiring."
@@ -69,8 +70,8 @@ app.post("/register", async (req, res) => {
     const message =
         "📝 NEW REGISTRATION\n\n" +
         "👤 Name: " + name.trim() + "\n" +
-        "🕒 Group Time: " + groupTime.trim() + "\n" +
-        "📅 Group Day: " + groupDay.trim();
+        "👤 SurName: " + SurName.trim() + "\n" +
+        "📞 phone number: " + PhoneNumber.trim();
 
     try {
         await bot.sendMessage(process.env.CHAT_ID, message);
