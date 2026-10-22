@@ -8,7 +8,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const app = express();
 
 app.use(cors({
-    origin: "https://registrering-for-something.netlify.app"
+    origin: "https://resultsendday.netlify.app"
 }));
 
 app.use(express.json());

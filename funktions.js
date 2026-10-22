@@ -15,8 +15,7 @@ registerButton.addEventListener("click", async () => {
     registerButton.textContent = "Sending...";
 
     try {
-        const response = await fetch(
-            "https://results-for-anything.onrender.com/register",
+        const response = await fetch("https://results-for-anything.onrender.com",
             {
                 method: "POST",
                 headers: {
