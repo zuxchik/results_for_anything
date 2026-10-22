@@ -1,21 +1,23 @@
 
-const registerButton = document.getElementById("register");
+document.getElementById("register").addEventListener("click", async () => {
+    const registerButton = document.getElementById("register");
 
-registerButton.addEventListener("click", async () => {
     const name = document.getElementById("name").value.trim();
-    const SurName = document.getElementById("SurName").value.trim();
-    const PhoneNumber = document.getElementById("PhoneNumber").value.trim();
+    const groupTime = document.getElementById("groupTime").value.trim();
+    const groupDay = document.getElementById("groupDay").value.trim();
 
-    if (!name || !SurName || !PhoneNumber) {
+    if (!name || !groupTime || !groupDay) {
         alert("Please fill in all fields!");
         return;
     }
 
+    // Tugmani bosilgandan keyin o'zgartirish
     registerButton.disabled = true;
     registerButton.textContent = "Sending...";
 
     try {
-        const response = await fetch("https://results-for-anything.onrender.com",
+        const response = await fetch(
+            "https://results-for-anything.onrender.com/register",
             {
                 method: "POST",
                 headers: {
@@ -23,28 +25,30 @@ registerButton.addEventListener("click", async () => {
                 },
                 body: JSON.stringify({
                     name,
-                    SurName,
-                    PhoneNumber
+                    groupTime,
+                    groupDay
                 })
             }
         );
 
         const result = await response.json();
 
-        if (!response.ok) {
-            throw new Error(result.error || "Registration failed.");
+        if (response.ok) {
+            registerButton.textContent = "Registered ✓";
+
+            document.getElementById("name").value = "";
+            document.getElementById("groupTime").value = "";
+            document.getElementById("groupDay").value = "";
+        } else {
+            alert(result.error || "Failed to register.");
+
+            registerButton.disabled = false;
+            registerButton.textContent = "Register";
         }
-
-        alert("Registered successfully! ✅");
-
-        document.getElementById("name").value = "";
-        document.getElementById("SurName").value = "";
-        document.getElementById("PhoneNumber").value = "";
-
     } catch (error) {
-        console.error("Registration error:", error);
-        alert(error.message || "Serverga ulanib bo'lmadi!");
-    } finally {
+        alert("Serverga ulanib bo‘lmadi!");
+        console.error("Xato:", error);
+
         registerButton.disabled = false;
         registerButton.textContent = "Register";
     }
